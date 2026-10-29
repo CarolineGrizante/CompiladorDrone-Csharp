@@ -52,7 +52,7 @@ O projeto utiliza `net10.0-windows` e possui `EnableWindowsTargeting` habilitado
 1. Clone o repositório:
 
    ```bash
-   git clone [https://github.com/SEU_USUARIO/compilador-missoes-drone-dsl.git](https://github.com/CarolineGrizante/CompiladorDrone-Csharp)
+   git clone https://github.com/CarolineGrizante/CompiladorDrone-Csharp
    cd CompiladorDrone-Csharp
    ```
 
@@ -227,37 +227,6 @@ Contém os perfis técnicos dos modelos, incluindo:
 - anticolisão;
 - Terrain Following;
 - RTH.
-
-## Estrutura do projeto
-
-```text
-CompiladorDrone/
-├── Dados/
-│   ├── drones.json
-│   └── fazendas.json
-├── Exemplos/
-│   ├── 01_missao_sucesso_completa.txt
-│   ├── 02_missao_sucesso_mapeamento.txt
-│   ├── 03_missao_sinonimos_completa.txt
-│   ├── ...
-│   └── 13_incompatibilidade_drone.txt
-├── Modelos/
-│   ├── Drone.cs
-│   ├── Missao.cs
-│   ├── RelatorioMissao.cs
-│   ├── Simbolo.cs
-│   └── Token.cs
-├── Pipeline/
-│   ├── Lexer.cs
-│   ├── Parser.cs
-│   ├── SemanticAnalyzer.cs
-│   ├── ServicoDrones.cs
-│   └── ServicoGeoGIS.cs
-├── App.xaml
-├── MainWindow.xaml
-├── MainWindow.xaml.cs
-└── CompiladorDrone.csproj
-```
 
 ## Exemplos de diagnóstico
 
