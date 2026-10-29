@@ -1,4 +1,4 @@
-# Compilador de Missões de Drone — DSL agrícola
+# Compilador de Missões de Drone - DSL agrícola
 
 Aplicação acadêmica desenvolvida em **C# e WPF** para analisar arquivos TXT que descrevem missões de drones agrícolas. O projeto implementa um pequeno compilador com análise **léxica, sintática e semântica**, além de consultas a bases JSON de fazendas e de modelos de drones.
 
