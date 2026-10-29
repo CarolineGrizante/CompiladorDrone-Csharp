@@ -1,0 +1,223 @@
+﻿<Window x:Class="CompiladorDrone.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Compilador de Missões de Drone — DSL"
+        Width="1280"
+        Height="820"
+        MinWidth="980"
+        MinHeight="650"
+        Background="#EAF0F5"
+        Icon="/Icone/Image.ico">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="3" />
+            <Setter Property="Padding" Value="10,5" />
+            <Setter Property="FontSize" Value="13" />
+        </Style>
+        <Style TargetType="GroupBox">
+            <Setter Property="Margin" Value="6" />
+            <Setter Property="Padding" Value="5" />
+        </Style>
+    </Window.Resources>
+
+    <DockPanel>
+        <ToolBar DockPanel.Dock="Top" Background="#FFFFFF">
+            <Button Content="Abrir TXT" Click="AbrirArquivo_Click" />
+            <Button Content="Executar análise" Click="Executar_Click" Background="#DCEEFF" />
+            <Separator />
+            <TextBlock Text="Casos de teste:" VerticalAlignment="Center" Margin="8,0,2,0" />
+            <Button Content="Sucesso" Click="Sucesso_Click" />
+            <Button Content="Sinônimos" Click="Sinonimos_Click" />
+            <Button Content="Erro léxico" Click="ErroLexico_Click" />
+            <Button Content="Erro sintático" Click="ErroSintatico_Click" />
+            <Button Content="Risco" Click="Risco_Click" />
+            <Button Content="Fatores novos" Click="Fatores_Click" />
+        </ToolBar>
+
+        <Grid Margin="8">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2.1*" />
+                <RowDefinition Height="1.4*" />
+                <RowDefinition Height="1.15*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.15*" />
+                <ColumnDefinition Width="1*" />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox Grid.Row="0" Grid.Column="0" Header="Editor da missão — entrada TXT / DSL">
+                <TextBox x:Name="EditorTextBox"
+                         AcceptsReturn="True"
+                         AcceptsTab="True"
+                         FontFamily="Consolas"
+                         FontSize="15"
+                         HorizontalScrollBarVisibility="Auto"
+                         VerticalScrollBarVisibility="Auto"
+                         TextWrapping="NoWrap"
+                         Background="#FFFFFF" />
+            </GroupBox>
+
+            <GroupBox Grid.Row="0" Grid.Column="1" Header="Console — pipeline e diagnósticos">
+                <TabControl x:Name="DiagnosticosTabControl">
+                    <TabItem Header="Resumo">
+                        <TextBox x:Name="ConsoleTextBox"
+                                 IsReadOnly="True"
+                                 FontFamily="Consolas"
+                                 FontSize="13"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap"
+                                 Background="#17202A"
+                                 Foreground="#EAF2F8"
+                                 BorderThickness="0" />
+                    </TabItem>
+                    <TabItem Header="Informações">
+                        <TextBox x:Name="InformacoesTextBox"
+                                 IsReadOnly="True"
+                                 FontFamily="Consolas"
+                                 FontSize="13"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap"
+                                 Background="#17202A"
+                                 Foreground="#EAF2F8"       
+                                 BorderThickness="0" />
+                    </TabItem>
+                    <TabItem Header="Alertas e erros">
+                        <TextBox x:Name="AlertasErrosTextBox"
+                                 IsReadOnly="True"
+                                 FontFamily="Consolas"
+                                 FontSize="13"
+                                 HorizontalScrollBarVisibility="Auto"
+                                 VerticalScrollBarVisibility="Auto"
+                                 TextWrapping="Wrap"
+                                 Background="#2B1717"
+                                 Foreground="#FFE1E1"
+                                 BorderThickness="0" />
+                    </TabItem>
+                </TabControl>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Grid.Column="0" Header="Símbolos — visão resumida">
+                <DataGrid x:Name="SimbolosDataGrid"
+                          AutoGenerateColumns="False"
+                          IsReadOnly="True"
+                          CanUserAddRows="False"
+                          HeadersVisibility="Column"
+                          GridLinesVisibility="Horizontal">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Parâmetro" Binding="{Binding Parametro}" Width="1.3*" />
+                        <DataGridTextColumn Header="Valor" Binding="{Binding Valor}" Width="1.1*" />
+                        <DataGridTextColumn Header="Unidade" Binding="{Binding Unidade}" Width="0.8*" />
+                        <DataGridTextColumn Header="Token normalizado" Binding="{Binding TokenNormalizado}" Width="1.5*" />
+                        <DataGridTextColumn Header="Posição" Binding="{Binding Linha}" Width="0.65*" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </GroupBox>
+
+            <GroupBox Grid.Row="1" Grid.Column="1" Header="Painel de análise">
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              HorizontalScrollBarVisibility="Disabled"
+                              Padding="2">
+                    <Grid Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="1.1*" />
+                            <ColumnDefinition Width="1.3*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="Risco:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="RiscoTextBlock" Grid.Row="0" Grid.Column="1" Text="NÃO CALCULADO" Margin="3" />
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="Fazenda:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="FazendaTextBlock" Grid.Row="1" Grid.Column="1" Text="—" TextWrapping="Wrap" Margin="3" />
+                        <TextBlock Grid.Row="2" Grid.Column="0" Text="Obstáculo máximo:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="ObstaculoTextBlock" Grid.Row="2" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="3" Grid.Column="0" Text="Consumo estimado:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="ConsumoTextBlock" Grid.Row="3" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="4" Grid.Column="0" Text="Bateria disponível:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="BateriaTextBlock" Grid.Row="4" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="5" Grid.Column="0" Text="Cobertura planejada:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="CoberturaTextBlock" Grid.Row="5" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="6" Grid.Column="0" Text="Memória requerida:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="MemoriaTextBlock" Grid.Row="6" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="7" Grid.Column="0" Text="GSD:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="GsdTextBlock" Grid.Row="7" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="8" Grid.Column="0" Text="Rota estimada:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="DistanciaTextBlock" Grid.Row="8" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="9" Grid.Column="0" Text="Tempo de voo:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="TempoVooTextBlock" Grid.Row="9" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="10" Grid.Column="0" Text="Sensor:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="SensorTextBlock" Grid.Row="10" Grid.Column="1" Text="—" Margin="3" TextWrapping="Wrap" />
+                        <TextBlock Grid.Row="11" Grid.Column="0" Text="Operação:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="OperacaoTextBlock" Grid.Row="11" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="12" Grid.Column="0" Text="Terrain Following:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="TerrainTextBlock" Grid.Row="12" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="13" Grid.Column="0" Text="Drone:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="DroneTextBlock" Grid.Row="13" Grid.Column="1" Text="—" TextWrapping="Wrap" Margin="3" />
+                        <TextBlock Grid.Row="14" Grid.Column="0" Text="Velocidade máx. drone:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="VelocidadeMaxDroneTextBlock" Grid.Row="14" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="15" Grid.Column="0" Text="Teto de voo drone:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="TetoDroneTextBlock" Grid.Row="15" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="16" Grid.Column="0" Text="Resistência ao vento:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="ResistenciaVentoDroneTextBlock" Grid.Row="16" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="17" Grid.Column="0" Text="Alcance seguro:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="AlcanceDroneTextBlock" Grid.Row="17" Grid.Column="1" Text="—" Margin="3" />
+                        <TextBlock Grid.Row="18" Grid.Column="0" Text="Proteção de umidade:" FontWeight="Bold" Margin="3" />
+                        <TextBlock x:Name="ProtecaoUmidadeDroneTextBlock" Grid.Row="18" Grid.Column="1" Text="—" Margin="3" />
+                    </Grid>
+                </ScrollViewer>
+            </GroupBox>
+
+            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1.15*" />
+                    <ColumnDefinition Width="1*" />
+                </Grid.ColumnDefinitions>
+                <GroupBox Grid.Column="0" Header="Todos os tokens reconhecidos">
+                    <TextBox x:Name="TokensTextBox"
+                             IsReadOnly="True"
+                             FontFamily="Consolas"
+                             FontSize="12"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Auto"
+                             TextWrapping="NoWrap"
+                             Background="#FFFFFF" />
+                </GroupBox>
+                <GroupBox Grid.Column="1" Header="Todos os símbolos reconhecidos">
+                    <DataGrid x:Name="SimbolosDetalhesDataGrid"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserAddRows="False"
+                              HeadersVisibility="Column"
+                              GridLinesVisibility="Horizontal">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Parâmetro" Binding="{Binding Parametro}" Width="1.25*" />
+                            <DataGridTextColumn Header="Valor" Binding="{Binding Valor}" Width="1*" />
+                            <DataGridTextColumn Header="Unidade" Binding="{Binding Unidade}" Width="0.7*" />
+                            <DataGridTextColumn Header="Token" Binding="{Binding TokenNormalizado}" Width="1.25*" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </GroupBox>
+            </Grid>
+        </Grid>
+    </DockPanel>
+</Window>

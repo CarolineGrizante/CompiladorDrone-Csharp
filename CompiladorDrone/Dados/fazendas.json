@@ -1,0 +1,102 @@
+[
+  {
+    "Id": "FAZ_001",
+    "Nome": "Fazenda Santa Maria",
+    "CulturaPredominante": "Soja / Milho",
+    "LatitudeCentral": -21.8542,
+    "LongitudeCentral": -47.4781,
+    "AlturaMaiorObstaculoM": 35.0,
+    "TipoObstaculo": "Talhão de Eucaliptos e Torres de Mídia",
+    "Relevo": "Ondulado"
+  },
+  {
+    "Id": "FAZ_002",
+    "Nome": "Sítio Bela Vista",
+    "CulturaPredominante": "Hortifrúti / Estufas",
+    "LatitudeCentral": -21.8200,
+    "LongitudeCentral": -47.4500,
+    "AlturaMaiorObstaculoM": 8.0,
+    "TipoObstaculo": "Galpão Agrícola e Antena de Rádio",
+    "Relevo": "Plano"
+  },
+  {
+    "Id": "FAZ_003",
+    "Nome": "Fazenda Morro Alto",
+    "CulturaPredominante": "Café de Montanha",
+    "LatitudeCentral": -21.9100,
+    "LongitudeCentral": -47.5200,
+    "AlturaMaiorObstaculoM": 45.0,
+    "TipoObstaculo": "Linha de Alta Tensão e Copas Altas",
+    "Relevo": "Montanhoso / Íngreme"
+  },
+  {
+    "Id": "FAZ_004",
+    "Nome": "Estância Vale Verde",
+    "CulturaPredominante": "Cana-de-Açúcar",
+    "LatitudeCentral": -21.7800,
+    "LongitudeCentral": -47.4000,
+    "AlturaMaiorObstaculoM": 12.0,
+    "TipoObstaculo": "Pivô Central de Irrigação",
+    "Relevo": "Suave Ondulado"
+  },
+  {
+    "Id": "FAZ_005",
+    "Nome": "Agrícola Sol Nascente",
+    "CulturaPredominante": "Algodão",
+    "LatitudeCentral": -21.8700,
+    "LongitudeCentral": -47.4900,
+    "AlturaMaiorObstaculoM": 5.0,
+    "TipoObstaculo": "Cerca Perimetral e Casa de Bombas",
+    "Relevo": "Plano (Área Aberta)"
+  },
+  {
+    "Id": "FAZ_006",
+    "Nome": "Fazenda Floresta Negra",
+    "CulturaPredominante": "Silvicultura (Pinus/Eucalipto)",
+    "LatitudeCentral": -21.9500,
+    "LongitudeCentral": -47.6000,
+    "AlturaMaiorObstaculoM": 50.0,
+    "TipoObstaculo": "Reserva Florestal Nativa Dendrológica",
+    "Relevo": "Muito Ondulado"
+  },
+  {
+    "Id": "FAZ_007",
+    "Nome": "Chácara das Oliveiras",
+    "CulturaPredominante": "Olivicultura",
+    "LatitudeCentral": -21.8400,
+    "LongitudeCentral": -47.4600,
+    "AlturaMaiorObstaculoM": 15.0,
+    "TipoObstaculo": "Postes de Energia e Pomar Adulto",
+    "Relevo": "Plano"
+  },
+  {
+    "Id": "FAZ_008",
+    "Nome": "Fazenda Rio Pardo",
+    "CulturaPredominante": "Pastagem / Pecuária",
+    "LatitudeCentral": -21.7500,
+    "LongitudeCentral": -47.3800,
+    "AlturaMaiorObstaculoM": 22.0,
+    "TipoObstaculo": "Mata Ciliar e Silo de Grãos",
+    "Relevo": "Várzea / Plano"
+  },
+  {
+    "Id": "FAZ_009",
+    "Nome": "Agropecuária Planalto",
+    "CulturaPredominante": "Milho Safrinha",
+    "LatitudeCentral": -21.8900,
+    "LongitudeCentral": -47.5100,
+    "AlturaMaiorObstaculoM": 18.0,
+    "TipoObstaculo": "Torre de Monitoramento Meteorológico",
+    "Relevo": "Suave Ondulado"
+  },
+  {
+    "Id": "FAZ_010",
+    "Nome": "Sítio Três Lagoas",
+    "CulturaPredominante": "Piscicultura / Citricultura",
+    "LatitudeCentral": -21.8100,
+    "LongitudeCentral": -47.4300,
+    "AlturaMaiorObstaculoM": 28.0,
+    "TipoObstaculo": "Rede Elétrica Rural e Pomar de Laranja",
+    "Relevo": "Ondulado"
+  }
+]

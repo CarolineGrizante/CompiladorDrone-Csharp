@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net10.0-windows</TargetFramework>
+		<UseWPF>true</UseWPF>
+		<EnableWindowsTargeting>true</EnableWindowsTargeting>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<AssemblyName>CompiladorDrone</AssemblyName>
+		<RootNamespace>CompiladorDrone</RootNamespace>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<Content Include="Dados/fazendas.json" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
+		<Content Include="Exemplos/**/*.txt" CopyToOutputDirectory="PreserveNewest" CopyToPublishDirectory="Always" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Icone\Image.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Icone\Image.ico" />
+	</ItemGroup>
+</Project>
