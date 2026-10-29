@@ -52,8 +52,8 @@ O projeto utiliza `net10.0-windows` e possui `EnableWindowsTargeting` habilitado
 1. Clone o repositório:
 
    ```bash
-   git clone https://github.com/SEU_USUARIO/compilador-missoes-drone-dsl.git
-   cd compilador-missoes-drone-dsl
+   git clone [https://github.com/SEU_USUARIO/compilador-missoes-drone-dsl.git](https://github.com/CarolineGrizante/CompiladorDrone-Csharp)
+   cd CompiladorDrone-Csharp
    ```
 
 2. Abra `CompiladorDrone.sln` no Visual Studio, caso a solução esteja incluída, ou abra `CompiladorDrone.csproj`.
