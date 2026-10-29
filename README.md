@@ -2,12 +2,6 @@
 
 Aplicação acadêmica desenvolvida em **C# e WPF** para analisar arquivos TXT que descrevem missões de drones agrícolas. O projeto implementa um pequeno compilador com análise **léxica, sintática e semântica**, além de consultas a bases JSON de fazendas e de modelos de drones.
 
-> **Escopo acadêmico:** os cálculos de autonomia, cobertura, consumo, memória e risco são modelos didáticos determinísticos. O sistema não substitui planejamento aeronáutico, manual de fabricante, avaliação meteorológica profissional ou autorização de voo.
-
-## Descrição curta para o GitHub
-
-> DSL acadêmica em C# e WPF para análise léxica, sintática e semântica de missões de drones agrícolas, com Lexer, Parser LL(1), regras de segurança, GeoGIS fictício e compatibilidade técnica entre missão e modelo de drone.
-
 ## Visão geral
 
 O usuário informa uma missão em um arquivo TXT com parâmetros como fazenda, altitude, velocidade, área, bateria, condições meteorológicas, sensor e modelo de drone. A aplicação processa esse arquivo em fases:
