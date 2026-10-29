@@ -121,21 +121,21 @@ REGULAMENTACAO = SISANT_OK
 
 ## Fases do compilador
 
-### 1. Análise léxica — `Lexer.cs`
+### 1. Análise léxica — Lexer.cs
 
 O Lexer lê os caracteres e agrupa lexemas em tokens. Alguns exemplos:
 
 | Entrada | Token |
 |---|---|
-| `ALTITUDE` | `TK_ALTITUDE` |
-| `DRONE_AGRI_A1` | `TK_IDENTIFICADOR` |
-| `80` | `TK_NUMERO` |
-| `m` | `TK_UNIDADE` |
-| `=` | `TK_ATRIBUICAO` |
+| ALTITUDE | TK_ALTITUDE |
+| DRONE_AGRI_A1 | TK_IDENTIFICADOR |
+| 80 | TK_NUMERO |
+| m | TK_UNIDADE |
+| = | TK_ATRIBUICAO |
 
 Um símbolo fora do alfabeto, como `@`, gera um diagnóstico léxico, normalmente `LEX001`.
 
-### 2. Análise sintática — `Parser.cs`
+### 2. Análise sintática — Parser.cs
 
 O Parser verifica se os tokens estão na ordem esperada pela gramática. Ele reconhece o cabeçalho e comandos no formato:
 
@@ -151,21 +151,21 @@ ALTITUDE 80 m
 
 Nesse caso, falta o operador `=` e o Parser gera um diagnóstico sintático.
 
-### 3. Análise semântica — `SemanticAnalyzer.cs`
+### 3. Análise semântica — SemanticAnalyzer.cs
 
 A análise semântica verifica se a missão possui significado válido no domínio. Entre as verificações estão:
 
-- unidades obrigatórias;
-- valores positivos e faixas válidas;
-- fazenda existente;
-- altitude em relação aos obstáculos;
-- condições meteorológicas;
-- autonomia e reserva de bateria;
-- cobertura e sobreposição;
-- memória estimada;
-- regulamentação;
-- risco de colisão;
-- compatibilidade entre missão e drone.
+- unidades obrigatórias
+- valores positivos e faixas válidas
+- fazenda existente
+- altitude em relação aos obstáculos
+- condições meteorológicas
+- autonomia e reserva de bateria
+- cobertura e sobreposição
+- memória estimada
+- regulamentação
+- risco de colisão
+- compatibilidade entre missão e drone
 
 Uma entrada pode ser lexical e sintaticamente correta, mas semanticamente inválida. Por exemplo:
 
@@ -177,24 +177,24 @@ A estrutura é válida, mas a altitude deve utilizar a unidade `m`.
 
 ## Modelos de drones
 
-Os modelos são carregados de `Dados/drones.json`. Os dados são fictícios e servem para demonstrar a análise semântica.
+Os modelos são carregados de Dados/drones.json. Os dados são fictícios e servem para demonstrar a análise semântica.
 
 | ID | Sensor | Bateria | Velocidade máxima | Teto | Alcance |
 |---|---|---:|---:|---:|---:|
-| `DRONE_AGRI_A1` | MULTIESPECTRAL | 30000 mAh | 36 km/h | 120 m | 8 km |
-| `DRONE_AGRI_B2` | RGB | 20000 mAh | 25 km/h | 100 m | 4 km |
-| `DRONE_LIDAR_C3` | LIDAR | 40000 mAh | 30 km/h | 80 m | 6 km |
+| DRONE_AGRI_A1 | MULTIESPECTRAL | 30000 mAh | 36 km/h | 120 m | 8 km |
+| DRONE_AGRI_B2 | RGB | 20000 mAh | 25 km/h | 100 m | 4 km |
+| DRONE_LIDAR_C3 | LIDAR | 40000 mAh | 30 km/h | 80 m | 6 km |
 
 O analisador compara, por exemplo:
 
-- sensor solicitado e sensor disponível;
-- GSD solicitado e GSD mínimo do modelo;
-- velocidade da missão e velocidade máxima;
-- altitude e teto de voo;
-- raio da missão e alcance seguro;
-- vento e resistência do drone;
-- bateria informada e capacidade cadastrada;
-- anticolisão, Terrain Following e RTH.
+- sensor solicitado e sensor disponível
+- GSD solicitado e GSD mínimo do modelo
+- velocidade da missão e velocidade máxima
+- altitude e teto de voo
+- raio da missão e alcance seguro
+- vento e resistência do drone
+- bateria informada e capacidade cadastrada
+- anticolisão, Terrain Following e RTH
 
 ## Bases de dados
 
@@ -209,93 +209,93 @@ Contém propriedades fictícias com informações como:
 - obstáculos;
 - altura máxima dos obstáculos.
 
-### `Dados/drones.json`
+### Dados/drones.json
 
 Contém os perfis técnicos dos modelos, incluindo:
 
-- sensor;
-- resolução;
-- GSD mínimo;
-- altitude operacional;
-- teto de voo;
-- velocidade máxima;
-- alcance;
-- bateria;
-- tempo máximo de voo;
-- resistência ao vento;
-- proteção contra umidade e chuva;
-- anticolisão;
-- Terrain Following;
-- RTH.
+- sensor
+- resolução
+- GSD mínimo
+- altitude operacional
+- teto de voo
+- velocidade máxima
+- alcance
+- bateria
+- tempo máximo de voo
+- resistência ao vento
+- proteção contra umidade e chuva
+- anticolisão
+- Terrain Following
+- RTH
 
 ## Exemplos de diagnóstico
 
 | Código | Fase | Significado |
 |---|---|---|
-| `LEX001` | Léxica | Caractere fora do alfabeto |
-| `SYN001`–`SYN004` | Sintática | Cabeçalho, atribuição ou valor inválido |
-| `SEM001`–`SEM010` | Semântica | Parâmetro, unidade, faixa ou valor inválido |
-| `GEO001`–`GEO002` | Geográfica | Fazenda ou coordenadas não localizadas/localizadas |
-| `GPS001`–`GPS002` | Segurança | Alerta ou risco relacionado a obstáculos |
-| `MET001`–`MET005` | Meteorológica | Condição de vento, chuva, nuvens, umidade ou iluminação |
-| `AUT001`, `AUT003`, `AUT004` | Autonomia | Área ou bateria da missão |
-| `REG001`–`REG002` | Regulamentação | Regulamentação ausente ou não permitida |
-| `DRN001`–`DRN015` | Drone | Incompatibilidade entre missão e equipamento |
-| `APP001` | Aplicação | Falha de infraestrutura, como JSON ausente |
+| LEX001 | Léxica | Caractere fora do alfabeto |
+| SYN001–SYN004 | Sintática | Cabeçalho, atribuição ou valor inválido |
+| SEM001–SEM010 | Semântica | Parâmetro, unidade, faixa ou valor inválido |
+| GEO001–GEO002 | Geográfica | Fazenda ou coordenadas não localizadas/localizadas |
+| GPS001–GPS002 | Segurança | Alerta ou risco relacionado a obstáculos |
+| MET001–MET005 | Meteorológica | Condição de vento, chuva, nuvens, umidade ou iluminação |
+| AUT001, AUT003, AUT004 | Autonomia | Área ou bateria da missão |
+| REG001–REG002 | Regulamentação | Regulamentação ausente ou não permitida |
+| DRN001–DRN015| Drone | Incompatibilidade entre missão e equipamento |
+| APP001 | Aplicação | Falha de infraestrutura, como JSON ausente |
 
 ## Exemplos de teste
 
-A pasta `Exemplos/` contém casos para demonstrar:
+A pasta Exemplos/ contém casos para demonstrar:
 
-- missão válida;
-- sinônimos;
-- caractere fora do alfabeto;
-- atribuição ausente;
-- unidade incompatível;
-- vento acima do limite;
-- risco crítico de colisão;
-- autonomia insuficiente;
-- coordenadas e regulamentação;
-- chuva, nuvens, GSD e BVLOS;
-- incompatibilidade técnica do drone.
+- missão válida
+- sinônimos
+- caractere fora do alfabeto
+- atribuição ausente
+- unidade incompatível
+- vento acima do limite
+- risco crítico de colisão
+- autonomia insuficiente
+- coordenadas e regulamentação
+- chuva, nuvens, GSD e BVLOS
+- incompatibilidade técnica do drone
 
 Para uma apresentação, recomenda-se executar nesta ordem:
 
-1. `01_missao_sucesso_completa.txt`;
-2. `03_missao_sinonimos_completa.txt`;
-3. `04_erro_lexico_caractere.txt`;
-4. `05_erro_sintatico_atribuicao.txt`;
-5. `06_erro_semantico_unidade.txt`;
-6. `13_incompatibilidade_drone.txt`.
+1. 01_missao_sucesso_completa.txt
+2. 03_missao_sinonimos_completa.txt
+3. 04_erro_lexico_caractere.txt
+4. 05_erro_sintatico_atribuicao.txt
+5. 06_erro_semantico_unidade.txt
+6. 13_incompatibilidade_drone.txt
 
 ## Limitações
 
 Este projeto é uma implementação acadêmica. Portanto:
 
-- os dados das fazendas e dos drones são fictícios;
-- o GeoGIS não consulta mapas reais;
-- os cálculos de consumo e cobertura são aproximações didáticas;
-- o sensor é registrado, mas não há processamento real de imagens ou cálculo de NDVI;
-- chuva, RTH, VLOS/BVLOS e Terrain Following são regras de validação, não controles físicos;
-- o nível de risco é categórico, não uma probabilidade estatística;
-- o sistema não substitui procedimentos de segurança ou regulamentação de voo.
+- os dados das fazendas e dos drones são fictícios
+- o GeoGIS não consulta mapas reais
+- os cálculos de consumo e cobertura são aproximações didáticas
+- o sensor é registrado, mas não há processamento real de imagens ou cálculo de NDVI
+- chuva, RTH, VLOS/BVLOS e Terrain Following são regras de validação, não controles físicos
+- o nível de risco é categórico, não uma probabilidade estatística
+- o sistema não substitui procedimentos de segurança ou regulamentação de voo
 
 ## Contexto acadêmico
 
 O projeto demonstra, em uma aplicação prática, conceitos de:
 
-- alfabetos e linguagens formais;
-- expressões regulares;
-- autômatos finitos determinísticos;
-- lexemas e tokens;
-- normalização e sinônimos;
-- gramáticas EBNF;
-- Parser LL(1);
-- tabela de símbolos;
-- análise semântica;
-- tratamento de erros;
-- integração com dados externos;
-- interface gráfica para inspeção do compilador.
+- alfabetos e linguagens formais
+- expressões regulares
+- autômatos finitos determinísticos
+- lexemas e tokens
+- normalização e sinônimos
+- gramáticas EBNF
+- Parser LL(1)
+- tabela de símbolos
+- análise semântica
+- tratamento de erros
+- integração com dados externos
+- interface gráfica para inspeção do compilador
 
 ## Autoria
 
