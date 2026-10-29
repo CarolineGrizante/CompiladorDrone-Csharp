@@ -38,6 +38,32 @@ Interface WPF — console, tokens, símbolos, métricas e diagnósticos
 - Interface WPF com editor, console separado por categorias, tabela de símbolos e painel de análise.
 - Exemplos de sucesso, sinônimos, erros léxicos, erros sintáticos, erros semânticos, autonomia, meteorologia, risco e incompatibilidade técnica.
 
+## Interface e exemplos
+
+### Missão completa
+
+![Exemplo de missão completa](Imagens/ExemploPerfeito.png)
+
+### Missão com sinônimos
+
+![Missão com sinônimos](Imagens/MissaoSinonimo.png)
+
+### Diagnóstico de erro léxico
+
+![Erro léxico](Imagens/ErroLexico.png)
+
+### Diagnóstico de erro sintático
+
+![Erro sintático](Imagens/ErroSintatico.png)
+
+### Diagnóstico de erro semântico
+
+![Erro semântico](Imagens/ErroSemantico.png)
+
+### Alerta meteorológico
+
+![Alerta de vento](Imagens/AlertaVento.png)
+
 ## Requisitos
 
 - Windows 10 ou superior.
